@@ -1,20 +1,80 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello HomeController!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Livros do clube do livro</title>
+    <style>
+        form, table {
+            width: 50%;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 50px;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+        form > div {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+        }
+        form > div > label {
+            font-size: 18pt;
+        }
+        form > div > input {
+            margin-top: 15px;
+            font-size: 18pt;
+            padding: 5px 10px;
+        }
+        table {
+            margin-top: 15px;
+        }
+        thead th {
+            background: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div>
+            <label>Nome do livro</label>
+            <input type="text" />
+        </div>
+        <div>
+            <label>Quantidade de páginas</label>
+            <input type="number" />
+        </div>
+        <div>
+            <label>Valor</label>
+            <input type="text" />
+        </div>
+        <div>
+            <input type="submit" value="Cadastrar"/>
+        </div>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do livro</th>
+                <th>Quantidade de páginas</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livro in livros %}
+            <tr>
+                <td>{{ livro.nome }}</td>
+                <td>{{livro.qtdPaginas}}</td>
+                <td>R$ {{livro.valor}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
