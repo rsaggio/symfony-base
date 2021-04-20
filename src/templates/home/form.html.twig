@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Livros do clube do livro</title>
+    <style>
+        form, table {
+            width: 50%;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 50px;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+        form > div {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+        }
+        form > div > label {
+            font-size: 18pt;
+        }
+        form > div > input {
+            margin-top: 15px;
+            font-size: 18pt;
+            padding: 5px 10px;
+        }
+        table {
+            margin-top: 15px;
+        }
+        thead th {
+            background: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    {% for message in app.flashes('message') %}
+    <h2>
+        {{ message }}
+    </h2>
+    {% endfor %}
+    <form action="/adicionar" method="post">
+        <div>
+            <label>Nome do livro</label>
+            <input type="text" name="nome"/>
+        </div>
+        <div>
+            <label>Quantidade de páginas</label>
+            <input type="number" name="qtdPaginas"/>
+        </div>
+        <div>
+            <label>Valor</label>
+            <input type="text" name="valor"/>
+        </div>
+        <div>
+            <input type="submit" value="Cadastrar"/>
+        </div>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do livro</th>
+                <th>Quantidade de páginas</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livro in livros %}
+            <tr>
+                <td>{{ livro.nome }}</td>
+                <td>{{livro.qtdPaginas}}</td>
+                <td>R$ {{livro.valor}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
