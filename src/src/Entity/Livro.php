@@ -1,13 +1,27 @@
 <?php
-
-
 namespace App\Entity;
 
+use App\Repository\LivroRepository;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity(repositoryClass=LivroRepository::class)
+ * @ORM\Table(name="livro")
+ */
 class Livro
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
+     */
+    private int $id;
+
+    /** @ORM\Column(type="string", nullable=false) */
     private string $nome;
+    /** @ORM\Column(type="integer", nullable=false) */
     private int $qtdPaginas;
+    /** @ORM\Column(type="decimal", scale=2, nullable=false) */
     private float $valor;
 
     /**
@@ -22,6 +36,23 @@ class Livro
         $this->qtdPaginas = $qtdPaginas;
         $this->valor = $valor;
     }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
 
 
     /**

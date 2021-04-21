@@ -46,40 +46,22 @@
         {{ message }}
     </h2>
     {% endfor %}
-    <form action="/adicionar" method="post">
+    <form action="{{ path('editar_save', { 'id' : livro.id }) }}" method="post">
         <div>
             <label>Nome do livro</label>
-            <input type="text" name="nome"/>
+            <input type="text" name="nome" value="{{ livro.nome }}"/>
         </div>
         <div>
             <label>Quantidade de páginas</label>
-            <input type="number" name="qtdPaginas"/>
+            <input type="number" name="qtdPaginas" value="{{ livro.qtdPaginas }}"/>
         </div>
         <div>
             <label>Valor</label>
-            <input type="text" name="valor"/>
+            <input type="text" name="valor" value="{{ livro.valor }}"/>
         </div>
         <div>
-            <input type="submit" value="Cadastrar"/>
+            <input type="submit" value="Editar"/>
         </div>
     </form>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome do livro</th>
-                <th>Quantidade de páginas</th>
-                <th>Valor</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for livro in livros %}
-            <tr>
-                <td>{{ livro.nome }}</td>
-                <td>{{livro.qtdPaginas}}</td>
-                <td>R$ {{livro.valor}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 </body>
 </html>

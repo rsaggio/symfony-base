@@ -38,21 +38,29 @@
             background: #333;
             color: #fff;
         }
+        .text-danger {
+            color: red;
+        }
     </style>
 </head>
 <body>
-    <form>
+    {% for message in app.flashes('message') %}
+    <h2>
+        {{ message }}
+    </h2>
+    {% endfor %}
+    <form action="{{ path('adicionar') }}" method="post">
         <div>
             <label>Nome do livro</label>
-            <input type="text" />
+            <input type="text" name="nome"/>
         </div>
         <div>
             <label>Quantidade de páginas</label>
-            <input type="number" />
+            <input type="number" name="qtdPaginas"/>
         </div>
         <div>
             <label>Valor</label>
-            <input type="text" />
+            <input type="text" name="valor"/>
         </div>
         <div>
             <input type="submit" value="Cadastrar"/>
@@ -64,6 +72,7 @@
                 <th>Nome do livro</th>
                 <th>Quantidade de páginas</th>
                 <th>Valor</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -72,6 +81,10 @@
                 <td>{{ livro.nome }}</td>
                 <td>{{livro.qtdPaginas}}</td>
                 <td>R$ {{livro.valor}}</td>
+                <td>
+                    <a href="{{ path('editar', { 'id': livro.id}) }}">editar</a>
+                    <a class="text-danger" href="{{ path('remover', { 'id': livro.id}) }}">remover</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
