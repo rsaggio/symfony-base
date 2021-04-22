@@ -46,22 +46,9 @@
         {{ message }}
     </h2>
     {% endfor %}
-    <form action="{{ path('editar_save', { 'id' : livro.id }) }}" method="post">
-        <div>
-            <label>Nome do livro</label>
-            <input type="text" name="nome" value="{{ livro.nome }}"/>
-        </div>
-        <div>
-            <label>Quantidade de páginas</label>
-            <input type="number" name="qtdPaginas" value="{{ livro.qtdPaginas }}"/>
-        </div>
-        <div>
-            <label>Valor</label>
-            <input type="text" name="valor" value="{{ livro.valor }}"/>
-        </div>
-        <div>
-            <input type="submit" value="Editar"/>
-        </div>
-    </form>
+    {{ form_start(formLivro, {'action': path('editar_save', {'id': livro.id })}) }}
+        {{ form_widget(formLivro) }}
+        <input type="submit" value="Editar" />
+    {{ form_end(formLivro) }}
 </body>
 </html>

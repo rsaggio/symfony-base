@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -49,23 +50,11 @@
         {{ message }}
     </h2>
     {% endfor %}
-    <form action="{{ path('adicionar') }}" method="post">
-        <div>
-            <label>Nome do livro</label>
-            <input type="text" name="nome"/>
-        </div>
-        <div>
-            <label>Quantidade de páginas</label>
-            <input type="number" name="qtdPaginas"/>
-        </div>
-        <div>
-            <label>Valor</label>
-            <input type="text" name="valor"/>
-        </div>
-        <div>
-            <input type="submit" value="Cadastrar"/>
-        </div>
-    </form>
+    {{ form_start(formLivro,{'action': path('adicionar')}) }}
+        {{ form_errors(formLivro) }}
+        {{ form_widget(formLivro) }}
+        <input type="submit" value="Cadastrar" />
+    {{ form_end(formLivro) }}
     <table>
         <thead>
             <tr>

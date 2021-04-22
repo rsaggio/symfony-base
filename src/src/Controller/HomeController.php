@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Livro;
+use App\Form\LivroType;
 use App\Repository\LivroRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,9 +23,10 @@ class HomeController extends AbstractController
     public function index(LivroRepository $livroRepository): Response
     {
         $livros = $livroRepository->findAll();
-
+        $form = $this->createForm(LivroType::class);
         return $this->render('home/index.html.twig', [
-            "livros" => $livros
+            "livros" => $livros,
+            "formLivro" => $form->createView()
         ]);
     }
 
@@ -32,16 +34,26 @@ class HomeController extends AbstractController
      * @Route("/adicionar", name="adicionar")
      */
     public function adicionar(Request $request, LivroRepository $livroRepository) {
-        $nome = $request->get('nome');
-        $qtdPaginas = $request->get('qtdPaginas');
-        $valor = $request->get('valor');
+        $livros = $livroRepository->findAll();
 
-        $livro = new Livro($nome, $qtdPaginas, $valor);
-        $livroRepository->save($livro);
+        $form = $this->createForm(LivroType::class);
+        $form->handleRequest($request);
 
-        $this->addFlash("message", "Livro foi cadastrado com sucesso");
+        if($form->isValid()) {
+            $livro = $form->getData();
 
-        return $this->redirectToRoute("home");
+            $livroRepository->save($livro);
+
+            $this->addFlash("message", "Livro foi cadastrado com sucesso");
+
+            return $this->redirectToRoute("home");
+        }else {
+            return $this->render('home/index.html.twig', [
+                "livros" => $livros,
+                "formLivro" => $form->createView()
+            ]);
+        }
+
     }
 
     /**
@@ -49,8 +61,10 @@ class HomeController extends AbstractController
      */
     public function editar(Livro $livro): Response
     {
+        $form = $this->createForm(LivroType::class, $livro);
         return $this->render('home/form.html.twig', [
-            "livro" => $livro
+            "livro" => $livro,
+            "formLivro" => $form->createView()
         ]);
     }
 
@@ -59,13 +73,9 @@ class HomeController extends AbstractController
      */
     public function salvarEdicao(Request $request, Livro $livro, LivroRepository $livroRepository): Response
     {
-        $nome = $request->get('nome');
-        $qtdPaginas = $request->get('qtdPaginas');
-        $valor = $request->get('valor');
-
-        $livro->setNome($nome);
-        $livro->setQtdPaginas($qtdPaginas);
-        $livro->setValor($valor);
+        $form = $this->createForm(LivroType::class, $livro);
+        $form->handleRequest($request);
+        $livro = $form->getData();
 
         $livroRepository->save($livro);
 
