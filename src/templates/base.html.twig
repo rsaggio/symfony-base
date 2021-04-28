@@ -3,9 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {% if app.user %}
+            <p>Você está logado como {{ app.user }} <a href="{{ path('app_logout') }}">Sair</a></p>
+        {% endif %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

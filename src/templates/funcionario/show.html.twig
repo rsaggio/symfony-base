@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Funcionario{% endblock %}
+
+{% block body %}
+    <h1>Funcionario</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ funcionario.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ funcionario.nome }}</td>
+            </tr>
+            <tr>
+                <th>DataNascimento</th>
+                <td>{{ funcionario.dataNascimento ? funcionario.dataNascimento|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Cpf</th>
+                <td>{{ funcionario.cpf }}</td>
+            </tr>
+            <tr>
+                <th>Cargo</th>
+                <td>{{ funcionario.cargo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('funcionario_index') }}">back to list</a>
+
+    <a href="{{ path('funcionario_edit', {'id': funcionario.id}) }}">edit</a>
+
+    {{ include('funcionario/_delete_form.html.twig') }}
+{% endblock %}

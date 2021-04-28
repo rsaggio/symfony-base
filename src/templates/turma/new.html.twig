@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Turma{% endblock %}
+
+{% block body %}
+    <h1>Create new Turma</h1>
+
+    {{ include('turma/_form.html.twig') }}
+
+    <a href="{{ path('turma_index') }}">back to list</a>
+{% endblock %}

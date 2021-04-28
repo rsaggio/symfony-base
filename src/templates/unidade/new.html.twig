@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Unidade{% endblock %}
+
+{% block body %}
+    <h1>Create new Unidade</h1>
+
+    {{ include('unidade/_form.html.twig') }}
+
+    <a href="{{ path('unidade_index') }}">back to list</a>
+{% endblock %}

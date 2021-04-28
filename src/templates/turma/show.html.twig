@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Turma{% endblock %}
+
+{% block body %}
+    <h1>Turma</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ turma.id }}</td>
+            </tr>
+            <tr>
+                <th>DiaDaSemana</th>
+                <td>{{ turma.diaDaSemana }}</td>
+            </tr>
+            <tr>
+                <th>Horario</th>
+                <td>{{ turma.horario }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('turma_index') }}">back to list</a>
+
+    <a href="{{ path('turma_edit', {'id': turma.id}) }}">edit</a>
+
+    {{ include('turma/_delete_form.html.twig') }}
+{% endblock %}

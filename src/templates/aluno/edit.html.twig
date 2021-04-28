@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Aluno{% endblock %}
+
+{% block body %}
+    <h1>Edit Aluno</h1>
+
+    {{ include('aluno/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('aluno_index') }}">back to list</a>
+
+    {{ include('aluno/_delete_form.html.twig') }}
+{% endblock %}

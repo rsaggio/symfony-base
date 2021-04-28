@@ -12,6 +12,8 @@
         "symfony/form": "5.2.*",
         "symfony/framework-bundle": "5.0.*",
         "symfony/orm-pack": "^1.0",
+        "symfony/security-bundle": "5.2.*",
+        "symfony/security-csrf": "5.2.*",
         "symfony/twig-bundle": "5.0.*",
         "symfony/validator": "5.2.*",
         "symfony/yaml": "5.0.*"

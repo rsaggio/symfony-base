@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Funcionario index{% endblock %}
+
+{% block body %}
+    <h1>Funcionario index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>DataNascimento</th>
+                <th>Cpf</th>
+                <th>Cargo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for funcionario in funcionarios %}
+            <tr>
+                <td>{{ funcionario.id }}</td>
+                <td>{{ funcionario.nome }}</td>
+                <td>{{ funcionario.dataNascimento ? funcionario.dataNascimento|date('Y-m-d') : '' }}</td>
+                <td>{{ funcionario.cpf }}</td>
+                <td>{{ funcionario.cargo }}</td>
+                <td>
+                    <a href="{{ path('funcionario_show', {'id': funcionario.id}) }}">show</a>
+                    <a href="{{ path('funcionario_edit', {'id': funcionario.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('funcionario_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Unidade index{% endblock %}
+
+{% block body %}
+    <h1>Unidade index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>QtdAlunos</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for unidade in unidades %}
+            <tr>
+                <td>{{ unidade.id }}</td>
+                <td>{{ unidade.nome }}</td>
+                <td>{{ unidade.alunos|length }}</td>
+                <td>
+                    <a href="{{ path('unidade_show', {'id': unidade.id}) }}">show</a>
+                    <a href="{{ path('unidade_edit', {'id': unidade.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('unidade_new') }}">Create new</a>
+{% endblock %}

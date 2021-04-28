@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Aluno{% endblock %}
+
+{% block body %}
+    <h1>Create new Aluno</h1>
+
+    {{ include('aluno/_form.html.twig') }}
+
+    <a href="{{ path('aluno_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aluno index{% endblock %}
+
+{% block body %}
+    <h1>Aluno index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>DataNascimento</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for aluno in alunos %}
+            <tr>
+                <td>{{ aluno.id }}</td>
+                <td>{{ aluno.nome }}</td>
+                <td>{{ aluno.email }}</td>
+                <td>{{ aluno.dataNascimento ? aluno.dataNascimento|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('aluno_show', {'id': aluno.id}) }}">show</a>
+                    <a href="{{ path('aluno_edit', {'id': aluno.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('aluno_new') }}">Create new</a>
+{% endblock %}

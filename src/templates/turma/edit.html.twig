@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Turma{% endblock %}
+
+{% block body %}
+    <h1>Edit Turma</h1>
+
+    {{ include('turma/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('turma_index') }}">back to list</a>
+
+    {{ include('turma/_delete_form.html.twig') }}
+{% endblock %}

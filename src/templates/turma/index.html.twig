@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Turma index{% endblock %}
+
+{% block body %}
+    <h1>Turma index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DiaDaSemana</th>
+                <th>Horario</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for turma in turmas %}
+            <tr>
+                <td>{{ turma.id }}</td>
+                <td>{{ turma.diaDaSemana }}</td>
+                <td>{{ turma.horario }}</td>
+                <td>
+                    <a href="{{ path('turma_show', {'id': turma.id}) }}">show</a>
+                    <a href="{{ path('turma_edit', {'id': turma.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('turma_new') }}">Create new</a>
+{% endblock %}

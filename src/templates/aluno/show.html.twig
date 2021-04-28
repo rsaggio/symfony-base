@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aluno{% endblock %}
+
+{% block body %}
+    <h1>Aluno</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ aluno.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ aluno.nome }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ aluno.email }}</td>
+            </tr>
+            <tr>
+                <th>DataNascimento</th>
+                <td>{{ aluno.dataNascimento ? aluno.dataNascimento|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h2>Turmas do aluno</h2>
+
+    {% for turma in aluno.turmas %}
+        <p>{{ turma }}</p>
+    {% endfor %}
+
+    <hr>
+    <h2>Histórico de visualização</h2>
+
+    {% for registro in aluno.registroVisualizacoes %}
+        <p>{{ registro }}</p>
+    {% endfor %}
+
+    <a href="{{ path('aluno_index') }}">back to list</a>
+
+    <a href="{{ path('aluno_edit', {'id': aluno.id}) }}">edit</a>
+
+    {{ include('aluno/_delete_form.html.twig') }}
+{% endblock %}
